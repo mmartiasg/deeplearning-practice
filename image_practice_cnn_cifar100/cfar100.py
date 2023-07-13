@@ -133,7 +133,7 @@ def scheduler(epoch, lr):
 
 # Define callbacks
 early_stop_callback = tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=25)
-save_best_model = tf.keras.callbacks.ModelCheckpoint(filepath="best_model", save_only_best=True,
+save_best_model = tf.keras.callbacks.ModelCheckpoint(filepath="checkpoint", save_only_best=True,
                                                      save_weights_only=True, verbose=1)
 reduce_lr = tf.keras.callbacks.LearningRateScheduler(scheduler)
 

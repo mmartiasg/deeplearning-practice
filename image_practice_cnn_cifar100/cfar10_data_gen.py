@@ -91,7 +91,7 @@ def scheduler(epoch, lr):
 
 # Define callbacks
 early_stop_callback = tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=25)
-save_best_model = tf.keras.callbacks.ModelCheckpoint(filepath="best_model_cfar10", save_only_best=True,
+save_best_model = tf.keras.callbacks.ModelCheckpoint(filepath="checkpoint", save_only_best=True,
                                                      save_weights_only=True, verbose=1)
 reduce_lr = tf.keras.callbacks.LearningRateScheduler(scheduler)
 
@@ -101,7 +101,7 @@ model.fit(datagen_train.flow(X_Train, Y_Train, batch_size=512),
 
 print(f"Evaluation metrics last model: {model.evaluate(datagen_test.flow(X_Test, Y_Test))}")
 
-model.load_weights("best_model_cfar10")
+model.load_weights("checkpoint")
 print(f"Evaluation metrics best model's weights: {model.evaluate(datagen_test.flow(X_Test, Y_Test))}")
 
-model.save(filepath="cfar10_model", save_format="h5")
+model.save(filepath="cfar10_model.h5", save_format="h5")

@@ -148,7 +148,7 @@ with tf.device(f"/{DEVICE}:0"):
 
     print(f"Evaluation metrics last model: {model.evaluate(test_data)}")
 
-    model.load_weights("best_model")
+    model.load_weights("checkpoint")
     print(f"Evaluation metrics best model's weights: {model.evaluate(test_data)}")
 
     model.save(filepath="imdb-model.h5", save_format="h5")

@@ -86,7 +86,7 @@ model_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath="checkpoint",
 model.fit(train_dataset, validation_data=val_dataset, epochs=500, callbacks=[model_checkpoint, early_stop])
 
 # Load weights
-model.load_weights("best_model_weights")
+model.load_weights("checkpoint")
 print(f"Test dataset evaluation: {model.evaluate(test_dataset)}")
 
 model.save(filepath="huston_housing_model.h5", save_format="h5")
