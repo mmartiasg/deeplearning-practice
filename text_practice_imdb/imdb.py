@@ -15,11 +15,6 @@ tf.config.set_logical_device_configuration(
 
 # Optimizations
 # GPU
-tf.config.optimizer.set_jit(True)
-# CPU?
-tf.function(jit_compile=True)
-# Mixed precision
-# not compatible with trained weights of the efficient net
 tf.keras.mixed_precision.set_global_policy('mixed_float16')
 
 (X, Y), (X_Test, Y_Test) = tf.keras.datasets.imdb.load_data(num_words=30000)
