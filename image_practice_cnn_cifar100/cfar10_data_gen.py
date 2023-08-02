@@ -10,11 +10,6 @@ tf.config.set_logical_device_configuration(
 
 # Optimizations
 # GPU
-tf.config.optimizer.set_jit(True)
-# CPU?
-tf.function(jit_compile=True)
-# Mixed precision
-# not compatible with trained weights of the efficient net
 tf.keras.mixed_precision.set_global_policy('mixed_float16')
 
 (X, Y), (X_Test, Y_Test) = tf.keras.datasets.cifar10.load_data()
@@ -77,7 +72,8 @@ model = tf.keras.Sequential([
 
 model.compile(loss="sparse_categorical_crossentropy",
               metrics=["sparse_categorical_accuracy"],
-              optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3))
+              optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3),
+              jit_compile=True)
 
 print(model.summary())
 
@@ -91,7 +87,7 @@ def scheduler(epoch, lr):
 
 # Define callbacks
 early_stop_callback = tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=25)
-save_best_model = tf.keras.callbacks.ModelCheckpoint(filepath="checkpoint", save_only_best=True,
+save_best_model = tf.keras.callbacks.ModelCheckpoint(filepath="temporal_checkpoint", save_only_best=True,
                                                      save_weights_only=True, verbose=1)
 reduce_lr = tf.keras.callbacks.LearningRateScheduler(scheduler)
 
@@ -101,7 +97,7 @@ model.fit(datagen_train.flow(X_Train, Y_Train, batch_size=512),
 
 print(f"Evaluation metrics last model: {model.evaluate(datagen_test.flow(X_Test, Y_Test))}")
 
-model.load_weights("checkpoint")
+model.load_weights("temporal_checkpoint")
 print(f"Evaluation metrics best model's weights: {model.evaluate(datagen_test.flow(X_Test, Y_Test))}")
 
 model.save(filepath="cfar10_model.h5", save_format="h5")

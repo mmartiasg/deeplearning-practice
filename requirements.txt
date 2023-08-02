@@ -1,4 +1,4 @@
-protobuf==3.19.5
+protobuf==3.20.3
 tensorflow==2.10
 tensorflow-datasets
 Pillow

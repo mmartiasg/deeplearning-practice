@@ -10,11 +10,6 @@ tf.config.set_logical_device_configuration(
 
 # Optimizations
 # GPU
-tf.config.optimizer.set_jit(True)
-# CPU?
-tf.function(jit_compile=True)
-# Mixed precision
-# not compatible with trained weights of the efficient net
 tf.keras.mixed_precision.set_global_policy('mixed_float16')
 
 (X, Y), (X_Test, Y_Test) = tf.keras.datasets.boston_housing.load_data()
@@ -78,7 +73,7 @@ model.compile(loss="mean_squared_error",
 # Callbacks this is allways the same I will use:
 # model checkpoint, early stop time is of the essence and learning rate decrease (optional)
 early_stop = tf.keras.callbacks.EarlyStopping(monitor="val_loss", patience=5)
-model_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath="checkpoint",
+model_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath="temporal_checkpoint",
                                                       save_weights_only=True,
                                                       save_only_best=True,
                                                       verbose=1)
@@ -86,7 +81,7 @@ model_checkpoint = tf.keras.callbacks.ModelCheckpoint(filepath="checkpoint",
 model.fit(train_dataset, validation_data=val_dataset, epochs=500, callbacks=[model_checkpoint, early_stop])
 
 # Load weights
-model.load_weights("checkpoint")
+model.load_weights("temporal_checkpoint")
 print(f"Test dataset evaluation: {model.evaluate(test_dataset)}")
 
 model.save(filepath="huston_housing_model.h5", save_format="h5")
