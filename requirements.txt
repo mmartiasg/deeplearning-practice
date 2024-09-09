@@ -1,0 +1,16 @@
+protobuf==3.20.3
+tensorflow==2.10
+tensorflow-datasets
+Pillow
+pandas
+numpy
+scipy
+
+# old requirements in Candidate handbook
+#protobuf==3.19.5
+#tensorflow==2.9
+#tensorflow-datasets==4.6.0
+#Pillow==9.1.1
+#pandas==1.4.2
+#numpy==1.22.4
+#scipy==1.7.3
