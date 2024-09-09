@@ -1,9 +1,9 @@
+# Tensorflow practice
+A set of problems for practice for the tensorflow developer certificate exam
+
 ![Build Status](https://img.shields.io/github/workflow/status/OWNER/REPO/CI)
 ![License](https://img.shields.io/github/license/OWNER/REPO)
 ![Version](https://img.shields.io/github/v/release/OWNER/REPO)
-
-# deeplearning-practice
-A set of problems for practice for the tensorflow developer certificate exam
 
 ## Overview
 - [reuters](#reuters)
