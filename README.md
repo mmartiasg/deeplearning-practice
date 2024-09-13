@@ -1,7 +1,9 @@
 # Tensorflow practice
 A set of problems for practice for the tensorflow developer certificate exam
 
-![Build Status](https://img.shields.io/github/workflow/status/OWNER/REPO/CI)
+# vae_experiments
+
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python&logoColor=white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.10-orange?logo=tensorflow&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-1.21-blue?logo=numpy&logoColor=white)
 ![License](https://img.shields.io/github/license/OWNER/REPO)
 ![Version](https://img.shields.io/github/v/release/OWNER/REPO)
 
@@ -14,6 +16,15 @@ A set of problems for practice for the tensorflow developer certificate exam
 Type: Multiclassification problem
 Dataset: Reuters datasets with 46 topics at least 10 samples for each one.
 Baseline: random selection topics will give an accuracy around 19% on validation, thus this is the metric to beat
+
+## Future experiments:
+- How does the number of words affect the algorithm's capacity to learn
+- Or maybe increasing or decreasing the max sequence has a negative impact at some point
+- Network sizeL: is it better to have a bigger one. How will that overfit the dataset?
+- So far I'm using hot encoding I wonder if using a TF-IDF will help because I only have if that token appears or not but all of them weigh the same!
+Maybe embeddings will make an improvement?
+- Another models like LSTM, GRU or Transformers could be better for this task and if that is how much better?
+- It is interesting to understand the power of the representation it is possible to achieve by increasing the size of the network o by some restrictions or increasing the limits of the inductive bias the model introduces by limiting the amount of data it sees at once, in cases such as fully connected layers or sequence models.
 
 ## Parameters:
 - NUM_WORDS: 10000
@@ -36,6 +47,10 @@ Metrics is MAE Loss is MSE
 
 After that, the baseline performance on MAE is 6.533 on the test set. The model with k=4 folds achieve 2.5 on the test set.
 
+## Implementation will be carried on
+- Pythorch
+- Keras
+- JAX
 
 ## License
 
